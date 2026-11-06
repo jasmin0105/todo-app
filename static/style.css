@@ -1,0 +1,467 @@
+/* ФРОНТЕНД: оформление (CSS) */
+
+/* ---------- ЦВЕТА ---------- */
+/* Все цвета лежат в переменных. Меняем переменные — меняется весь сайт. */
+
+:root {
+  --card: #ffffff;
+  --text: #2d3142;
+  --muted: #8b90a0;
+  --line: #e8ebf2;
+  --item: #f6f7fb;
+  --input-bg: #f1f3f9;
+  --danger: #e5484d;
+  --success: #2fbf80;
+  --high: #e5484d;
+  --medium: #f5a623;
+  --low: #2fbf80;
+}
+
+/* Цветовые темы: каждая задаёт фон страницы и главный цвет (--accent) */
+body[data-color="ocean"] {
+  --bg: linear-gradient(135deg, #36d1dc, #5b86e5);
+  --accent: #3f7de0;
+}
+body[data-color="sunset"] {
+  --bg: linear-gradient(135deg, #f6d365, #fda085);
+  --accent: #ee7440;
+}
+body[data-color="forest"] {
+  --bg: linear-gradient(135deg, #56ab2f, #a8e063);
+  --accent: #3c9a4a;
+}
+body[data-color="violet"] {
+  --bg: linear-gradient(135deg, #667eea, #764ba2);
+  --accent: #6a5fe0;
+}
+body[data-color="calm"] {
+  --bg: #e9edf5;
+  --accent: #4a6cf7;
+}
+
+/* Тёмная тема: меняем только фон и цвета карточки (главный цвет остаётся) */
+body.dark {
+  --bg: linear-gradient(135deg, #1b1d2b, #262a40);
+  --card: #2a2d3e;
+  --text: #eceef5;
+  --muted: #9a9fb5;
+  --line: #3a3e54;
+  --item: #323650;
+  --input-bg: #232637;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Атрибут hidden должен реально скрывать элемент */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 16px;
+  color: var(--text);
+  transition: background 0.3s;
+}
+
+.app {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--card);
+  padding: 28px;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- ШАПКА ---------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+#date {
+  margin: 4px 0 0;
+  color: var(--muted);
+  text-transform: capitalize;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.colors {
+  display: flex;
+  gap: 6px;
+}
+
+/* Кружки выбора цвета */
+.color-dot {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.color-dot.active {
+  border-color: var(--text);
+  transform: scale(1.15);
+}
+
+.color-dot[data-color="ocean"] {
+  background: linear-gradient(135deg, #36d1dc, #5b86e5);
+}
+.color-dot[data-color="sunset"] {
+  background: linear-gradient(135deg, #f6d365, #fda085);
+}
+.color-dot[data-color="forest"] {
+  background: linear-gradient(135deg, #56ab2f, #a8e063);
+}
+.color-dot[data-color="violet"] {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+.color-dot[data-color="calm"] {
+  background: #c9d1e3;
+}
+
+.icon-btn {
+  background: var(--input-bg);
+  color: var(--text);
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.icon-btn:hover {
+  background: var(--line);
+}
+
+/* ---------- СТАТИСТИКА ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.stat {
+  background: var(--item);
+  border-radius: 14px;
+  padding: 12px 6px;
+  text-align: center;
+}
+
+.stat b {
+  display: block;
+  font-size: 24px;
+  color: var(--accent);
+}
+
+.stat small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---------- ПРОГРЕСС ---------- */
+.progress {
+  height: 10px;
+  background: var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--success));
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+#progress-text {
+  margin: 8px 0 20px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ---------- ФОРМА ---------- */
+#task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.form-row {
+  display: flex;
+  gap: 8px;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="date"],
+select {
+  padding: 11px 12px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  background: var(--input-bg);
+  color: var(--text);
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="date"]:focus,
+select:focus {
+  border-color: var(--accent);
+}
+
+#task-input {
+  font-size: 16px;
+}
+
+.form-row select,
+.form-row input[type="date"] {
+  flex: 1;
+  min-width: 0;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+  font-family: inherit;
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+.add-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 11px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.add-btn:hover {
+  filter: brightness(0.92);
+}
+
+/* ---------- ПОИСК, СОРТИРОВКА, ФИЛЬТРЫ ---------- */
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.toolbar input {
+  flex: 1;
+  min-width: 0;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.filter {
+  background: var(--input-bg);
+  color: var(--muted);
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+
+.filter.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ---------- СПИСОК ЗАДАЧ ---------- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+  background: var(--item);
+  border-radius: 14px;
+  border-left: 5px solid var(--medium); /* цвет полоски = приоритет */
+}
+
+li.prio-high {
+  border-left-color: var(--high);
+}
+li.prio-medium {
+  border-left-color: var(--medium);
+}
+li.prio-low {
+  border-left-color: var(--low);
+}
+
+li input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--success);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.task-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task-title {
+  word-break: break-word;
+}
+
+/* Выполненная задача — зачёркнутый серый текст */
+li.done .task-title {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+li.done {
+  opacity: 0.7;
+}
+
+.edit-input {
+  width: 100%;
+  border-color: var(--accent);
+}
+
+/* Строка с приоритетом и сроком */
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.badge-high {
+  background: var(--high);
+}
+.badge-medium {
+  background: var(--medium);
+}
+.badge-low {
+  background: var(--low);
+}
+
+.due {
+  color: var(--muted);
+}
+
+.due.overdue {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.action-btn {
+  background: transparent;
+  color: var(--muted);
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.action-btn:hover {
+  background: var(--line);
+  color: var(--accent);
+}
+
+.action-btn.delete:hover {
+  color: var(--danger);
+}
+
+#empty-msg {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px 0;
+}
+
+/* ---------- НИЖНЯЯ ПАНЕЛЬ ---------- */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.link-btn {
+  background: none;
+  color: var(--danger);
+  font-size: 14px;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+#error-msg {
+  margin: 14px 0 0;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fdecec;
+  color: var(--danger);
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Для маленьких экранов (телефон) */
+@media (max-width: 520px) {
+  .app {
+    padding: 20px;
+  }
+  .form-row {
+    flex-wrap: wrap;
+  }
+  .add-btn {
+    width: 100%;
+  }
+  header {
+    flex-direction: column;
+  }
+}

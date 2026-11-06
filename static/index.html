@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Мои задачи</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body data-color="ocean">
+    <div class="app">
+      <!-- Шапка: заголовок, дата, выбор цвета, тёмная тема -->
+      <header>
+        <div>
+          <h1>Мои задачи</h1>
+          <p id="date"></p>
+        </div>
+        <div class="tools">
+          <div class="colors">
+            <button
+              class="color-dot"
+              data-color="ocean"
+              title="Морской"
+            ></button>
+            <button
+              class="color-dot"
+              data-color="sunset"
+              title="Закат"
+            ></button>
+            <button class="color-dot" data-color="forest" title="Лес"></button>
+            <button
+              class="color-dot"
+              data-color="violet"
+              title="Фиолетовый"
+            ></button>
+            <button
+              class="color-dot"
+              data-color="calm"
+              title="Спокойный"
+            ></button>
+          </div>
+          <button id="theme-btn" class="icon-btn" title="Тёмная / светлая тема">
+            ◐
+          </button>
+        </div>
+      </header>
+
+      <!-- Плитки статистики -->
+      <section class="stats">
+        <div class="stat"><b id="stat-total">0</b><small>Всего</small></div>
+        <div class="stat"><b id="stat-active">0</b><small>В работе</small></div>
+        <div class="stat"><b id="stat-done">0</b><small>Готово</small></div>
+        <div class="stat">
+          <b id="stat-overdue">0</b><small>Просрочено</small>
+        </div>
+      </section>
+
+      <!-- Полоска прогресса -->
+      <div class="progress"><div id="progress-bar"></div></div>
+      <p id="progress-text"></p>
+
+      <!-- Форма добавления задачи -->
+      <form id="task-form">
+        <input
+          type="text"
+          id="task-input"
+          placeholder="Что нужно сделать?"
+          autocomplete="off"
+        />
+        <div class="form-row">
+          <select id="priority-select" title="Приоритет">
+            <option value="low">Приоритет: низкий</option>
+            <option value="medium" selected>Приоритет: средний</option>
+            <option value="high">Приоритет: высокий</option>
+          </select>
+          <input type="date" id="date-input" title="Срок выполнения" />
+          <button type="submit" class="add-btn">Добавить</button>
+        </div>
+      </form>
+
+      <!-- Поиск и сортировка -->
+      <div class="toolbar">
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Поиск по задачам..."
+        />
+        <select id="sort-select" title="Сортировка">
+          <option value="new">Сначала новые</option>
+          <option value="priority">По приоритету</option>
+          <option value="due">По сроку</option>
+          <option value="alpha">По алфавиту</option>
+        </select>
+      </div>
+
+      <!-- Фильтры: все / активные / выполненные -->
+      <div class="filters">
+        <button class="filter active" data-filter="all">Все</button>
+        <button class="filter" data-filter="active">Активные</button>
+        <button class="filter" data-filter="done">Выполненные</button>
+      </div>
+
+      <!-- Сюда JavaScript вставит задачи -->
+      <ul id="task-list"></ul>
+      <p id="empty-msg" hidden>Здесь пока пусто</p>
+
+      <!-- Нижняя панель -->
+      <footer>
+        <span id="counter"></span>
+        <button id="clear-btn" class="link-btn" hidden>
+          Удалить выполненные
+        </button>
+      </footer>
+
+      <p id="error-msg" hidden></p>
+    </div>
+
+    <script src="/static/script.js"></script>
+  </body>
+</html>
